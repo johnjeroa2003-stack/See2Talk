@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>See2Talk - Global Chat</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+
+  <body>
+    <!-- =========================================================
+     NAME SCREEN
+========================================================= -->
+
+    <div id="nameScreen" class="name-screen">
+      <div class="name-card">
+        <div class="name-logo">
+          <div class="logo-icon">2</div>
+
+          <div>
+            <div class="logo-title">See2Talk</div>
+            <div class="logo-subtitle">Global Chat</div>
+          </div>
+        </div>
+
+        <div class="welcome-globe">🌎</div>
+
+        <h1>
+          One world.<br />
+          <span>One conversation.</span>
+        </h1>
+
+        <p>
+          Anyone can join the open room. Say hello, share an idea, or meet
+          someone new.
+        </p>
+
+        <form id="nameForm">
+          <input
+            id="nameInput"
+            type="text"
+            maxlength="30"
+            placeholder="Enter your name..."
+            autocomplete="off"
+            required
+          />
+
+          <button type="submit">Enter Global Chat</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     MAIN CHAT APPLICATION
+========================================================= -->
+
+    <div id="chatApp" class="chat-app hidden">
+      <!-- =====================================================
+         TOP HEADER
+    ====================================================== -->
+
+      <header class="top-header">
+        <div class="brand">
+          <div class="brand-icon">2</div>
+
+          <div class="brand-text">
+            <div class="brand-title">See2Talk</div>
+
+            <div class="brand-subtitle">Global Chat</div>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="online-indicator">
+            <span class="online-dot"></span>
+
+            <span id="onlineCount"> 0 online </span>
+          </div>
+        </div>
+      </header>
+
+      <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+      <main class="main-layout">
+        <!-- =================================================
+             LEFT SIDEBAR
+        ================================================== -->
+
+        <aside class="left-sidebar">
+          <div class="sidebar-globe">🌎</div>
+
+          <h1>
+            One world.<br />
+            <span>One conversation.</span>
+          </h1>
+
+          <p>
+            Anyone can join the open room. Say hello, share an idea, or meet
+            someone new.
+          </p>
+
+          <!-- GLOBAL CHAT CARD -->
+
+          <button id="globalChatButton" class="global-chat-card" type="button">
+            <div class="global-chat-icon">💬</div>
+
+            <div class="global-chat-info">
+              <strong> Global Chat </strong>
+
+              <span> Everyone can participate </span>
+            </div>
+          </button>
+
+          <!-- SIDEBAR INFO -->
+
+          <div class="sidebar-points">
+            <div>
+              <span class="point-dot"></span>
+              Be respectful
+            </div>
+
+            <div>
+              <span class="point-dot"></span>
+              Keep it friendly
+            </div>
+
+            <div>
+              <span class="point-dot"></span>
+              Have fun
+            </div>
+          </div>
+
+          <!-- =================================================
+                 NEW PEOPLE BUTTON
+            ================================================== -->
+
+          <button id="peopleButton" class="people-button" type="button">
+            <span class="people-button-icon"> 👥 </span>
+
+            <span class="people-button-text">
+              <strong> People </strong>
+
+              <small> Find someone to chat privately </small>
+            </span>
+
+            <span class="people-button-arrow"> → </span>
+          </button>
+
+          <!-- LEAVE BUTTON -->
+
+          <button id="leaveButton" class="leave-button" type="button">
+            Leave Chat
+          </button>
+        </aside>
+
+        <!-- =================================================
+             GLOBAL CHAT
+        ================================================== -->
+
+        <section class="global-chat">
+          <!-- GLOBAL CHAT HEADER -->
+
+          <div class="chat-header">
+            <div class="chat-header-left">
+              <div class="chat-header-icon">🌐</div>
+
+              <div>
+                <h2>Global Chat</h2>
+
+                <span> Connected • Be respectful </span>
+              </div>
+            </div>
+
+            <!-- MOBILE PEOPLE BUTTON -->
+
+            <button
+              id="mobilePeopleButton"
+              class="mobile-people-button"
+              type="button"
+              aria-label="People"
+            >
+              👥
+            </button>
+          </div>
+
+          <!-- GLOBAL MESSAGES -->
+
+          <div id="messages" class="messages">
+            <!-- Messages are inserted here by app.js -->
+          </div>
+
+          <!-- GLOBAL TYPING -->
+
+          <div id="typingIndicator" class="typing-indicator"></div>
+
+          <!-- GLOBAL MESSAGE FORM -->
+
+          <form id="messageForm" class="message-form">
+            <button
+              id="emojiButton"
+              class="emoji-button"
+              type="button"
+              aria-label="Emoji"
+            >
+              😊
+            </button>
+
+            <input
+              id="messageInput"
+              type="text"
+              maxlength="1000"
+              placeholder="Type a message..."
+              autocomplete="off"
+            />
+
+            <button class="send-button" type="submit">Send</button>
+          </form>
+
+          <!-- EMOJI MENU -->
+
+          <div id="emojiMenu" class="emoji-menu hidden">
+            <button type="button">😀</button>
+            <button type="button">😂</button>
+            <button type="button">😍</button>
+            <button type="button">🥰</button>
+            <button type="button">😎</button>
+            <button type="button">🤔</button>
+            <button type="button">😢</button>
+            <button type="button">😭</button>
+            <button type="button">😡</button>
+            <button type="button">❤️</button>
+            <button type="button">🔥</button>
+            <button type="button">👍</button>
+            <button type="button">👋</button>
+            <button type="button">🎉</button>
+            <button type="button">😂</button>
+            <button type="button">🌎</button>
+          </div>
+        </section>
+      </main>
+
+      <!-- =========================================================
+         PEOPLE PANEL
+    ========================================================== -->
+
+      <div id="peopleOverlay" class="people-overlay hidden">
+        <aside id="peoplePanel" class="people-panel">
+          <!-- PEOPLE HEADER -->
+
+          <div class="people-panel-header">
+            <div>
+              <h2>Private Chats</h2>
+
+              <span> Find someone to talk to </span>
+            </div>
+
+            <button
+              id="closePeoplePanel"
+              class="close-people-button"
+              type="button"
+              aria-label="Close people"
+            >
+              ×
+            </button>
+          </div>
+
+          <!-- SEARCH -->
+
+          <div class="people-search-wrapper">
+            <span class="people-search-icon"> 🔍 </span>
+
+            <input
+              id="peopleSearchInput"
+              type="text"
+              placeholder="Search people..."
+              autocomplete="off"
+            />
+
+            <button
+              id="clearPeopleSearch"
+              class="clear-search-button hidden"
+              type="button"
+              aria-label="Clear search"
+            >
+              ×
+            </button>
+          </div>
+
+          <!-- SEARCH RESULT / USERS -->
+
+          <div id="peopleList" class="people-list">
+            <!-- Users are inserted by app.js -->
+          </div>
+
+          <!-- NO USERS -->
+
+          <div id="noPeopleMessage" class="no-people-message hidden">
+            <div class="no-people-icon">👥</div>
+
+            <strong> No people found </strong>
+
+            <span> Try another name </span>
+          </div>
+
+          <!-- PEOPLE FOOTER -->
+
+          <div class="people-panel-footer">
+            <span class="people-footer-dot"></span>
+
+            <span> Online people can receive private messages </span>
+          </div>
+        </aside>
+      </div>
+
+      <!-- =========================================================
+         PRIVATE CHAT
+    ========================================================== -->
+
+      <div id="privateChatOverlay" class="private-chat-overlay hidden">
+        <section id="privateChat" class="private-chat">
+          <!-- PRIVATE HEADER -->
+
+          <header class="private-chat-header">
+            <div class="private-user">
+              <div id="privateUserAvatar" class="private-user-avatar">U</div>
+
+              <div class="private-user-info">
+                <strong id="privateUserName"> User </strong>
+
+                <span id="privateUserStatus">
+                  <span class="private-online-dot"></span>
+                  Online
+                </span>
+              </div>
+            </div>
+
+            <button
+              id="closePrivateChat"
+              class="close-private-button"
+              type="button"
+              aria-label="Close private chat"
+            >
+              ×
+            </button>
+          </header>
+
+          <!-- PRIVATE MESSAGES -->
+
+          <div id="privateMessages" class="private-messages">
+            <!-- Private messages inserted by app.js -->
+          </div>
+
+          <!-- PRIVATE TYPING -->
+
+          <div id="privateTyping" class="private-typing"></div>
+
+          <!-- PRIVATE MESSAGE FORM -->
+
+          <form id="privateMessageForm" class="private-message-form">
+            <input
+              id="privateMessageInput"
+              type="text"
+              maxlength="1000"
+              placeholder="Message privately..."
+              autocomplete="off"
+            />
+
+            <button class="private-send-button" type="submit">Send</button>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script src="app.js"></script>
+  </body>
+</html>
