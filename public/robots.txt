@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://see2talk-5.onrender.com/sitemap.xml

@@ -2,23 +2,134 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>See2Talk - Global Chat</title>
+    <!-- =========================================================
+         SEO
+    ========================================================== -->
+
+    <title>See2Talk - Free Online Chat & Global Messaging</title>
+
+    <meta
+      name="description"
+      content="See2Talk is a free online chat and messaging platform where you can meet people, join global conversations, send messages, and start private chats."
+    />
+
+    <meta
+      name="keywords"
+      content="See2Talk, online chat, free online chat, global chat, text chat, chat room, online messaging, private chat, chat with people online, free messaging"
+    />
+
+    <meta name="robots" content="index, follow" />
+
+    <meta name="author" content="See2Talk" />
+
+    <link rel="canonical" href="https://see2talk-5.onrender.com/" />
+
+    <!-- =========================================================
+         GOOGLE / SEARCH ENGINE
+    ========================================================== -->
+
+    <meta
+      name="googlebot"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+
+    <!-- =========================================================
+         OPEN GRAPH / FACEBOOK / WHATSAPP / SOCIAL SHARING
+    ========================================================== -->
+
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:title"
+      content="See2Talk - Free Online Chat & Global Messaging"
+    />
+
+    <meta
+      property="og:description"
+      content="Join See2Talk for free online chat, global conversations, text messaging, and private chats."
+    />
+
+    <meta property="og:url" content="https://see2talk-5.onrender.com/" />
+
+    <meta property="og:site_name" content="See2Talk" />
+
+    <meta property="og:locale" content="en_US" />
+
+    <!-- =========================================================
+         TWITTER / X SHARING
+    ========================================================== -->
+
+    <meta name="twitter:card" content="summary" />
+
+    <meta
+      name="twitter:title"
+      content="See2Talk - Free Online Chat & Global Messaging"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Free online global chat and private messaging with See2Talk."
+    />
+
+    <!-- =========================================================
+         THEME / BROWSER
+    ========================================================== -->
+
+    <meta name="theme-color" content="#080b18" />
+
+    <meta name="application-name" content="See2Talk" />
+
+    <!-- =========================================================
+         FAVICON
+    ========================================================== -->
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23080b18'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-size='65' font-family='Arial' font-weight='bold' fill='%237c5cff'%3E2%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- =========================================================
+         STRUCTURED DATA
+         Helps search engines understand See2Talk.
+    ========================================================== -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "See2Talk",
+        "url": "https://see2talk-5.onrender.com/",
+        "description": "See2Talk is a free online chat and messaging platform for global conversations and private chats.",
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true
+      }
+    </script>
+
+    <!-- =========================================================
+         STYLES
+    ========================================================== -->
 
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Socket.IO -->
+    <!-- =========================================================
+         SOCKET.IO
+    ========================================================== -->
+
     <script src="/socket.io/socket.io.js"></script>
   </head>
 
   <body>
     <!-- =========================================================
      NAME SCREEN
-========================================================= -->
+    ========================================================== -->
 
     <div id="nameScreen" class="name-screen">
       <div class="name-card">
@@ -60,12 +171,12 @@
 
     <!-- =========================================================
      MAIN CHAT APPLICATION
-========================================================= -->
+    ========================================================== -->
 
     <div id="chatApp" class="chat-app hidden">
       <!-- =====================================================
          TOP HEADER
-    ====================================================== -->
+      ====================================================== -->
 
       <header class="top-header">
         <div class="brand">
@@ -89,7 +200,7 @@
 
       <!-- =====================================================
          MAIN CONTENT
-    ====================================================== -->
+      ====================================================== -->
 
       <main class="main-layout">
         <!-- =================================================
@@ -115,9 +226,9 @@
             <div class="global-chat-icon">💬</div>
 
             <div class="global-chat-info">
-              <strong> Global Chat </strong>
+              <strong>Global Chat</strong>
 
-              <span> Everyone can participate </span>
+              <span>Everyone can participate</span>
             </div>
           </button>
 
@@ -140,20 +251,18 @@
             </div>
           </div>
 
-          <!-- =================================================
-                 NEW PEOPLE BUTTON
-            ================================================== -->
+          <!-- PEOPLE BUTTON -->
 
           <button id="peopleButton" class="people-button" type="button">
-            <span class="people-button-icon"> 👥 </span>
+            <span class="people-button-icon">👥</span>
 
             <span class="people-button-text">
-              <strong> People </strong>
+              <strong>People</strong>
 
-              <small> Find someone to chat privately </small>
+              <small>Find someone to chat privately</small>
             </span>
 
-            <span class="people-button-arrow"> → </span>
+            <span class="people-button-arrow">→</span>
           </button>
 
           <!-- LEAVE BUTTON -->
@@ -177,7 +286,7 @@
               <div>
                 <h2>Global Chat</h2>
 
-                <span> Connected • Be respectful </span>
+                <span>Connected • Be respectful</span>
               </div>
             </div>
 
@@ -251,7 +360,7 @@
 
       <!-- =========================================================
          PEOPLE PANEL
-    ========================================================== -->
+      ========================================================== -->
 
       <div id="peopleOverlay" class="people-overlay hidden">
         <aside id="peoplePanel" class="people-panel">
@@ -261,7 +370,7 @@
             <div>
               <h2>Private Chats</h2>
 
-              <span> Find someone to talk to </span>
+              <span>Find someone to talk to</span>
             </div>
 
             <button
@@ -277,7 +386,7 @@
           <!-- SEARCH -->
 
           <div class="people-search-wrapper">
-            <span class="people-search-icon"> 🔍 </span>
+            <span class="people-search-icon">🔍</span>
 
             <input
               id="peopleSearchInput"
@@ -307,9 +416,9 @@
           <div id="noPeopleMessage" class="no-people-message hidden">
             <div class="no-people-icon">👥</div>
 
-            <strong> No people found </strong>
+            <strong>No people found</strong>
 
-            <span> Try another name </span>
+            <span>Try another name</span>
           </div>
 
           <!-- PEOPLE FOOTER -->
@@ -324,7 +433,7 @@
 
       <!-- =========================================================
          PRIVATE CHAT
-    ========================================================== -->
+      ========================================================== -->
 
       <div id="privateChatOverlay" class="private-chat-overlay hidden">
         <section id="privateChat" class="private-chat">
@@ -383,7 +492,7 @@
 
     <!-- =========================================================
      JAVASCRIPT
-========================================================= -->
+    ========================================================== -->
 
     <script src="app.js"></script>
   </body>
